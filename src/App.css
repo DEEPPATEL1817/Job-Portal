@@ -22,3 +22,27 @@
   height: 100%;
   background:radial-gradient(circle,transparent,rgba(0,0,0,0.9));
 }
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  background-color: #2d2d2d;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  margin-top: auto;
+}
+.landing-page-img{
+  height: 30px;
+}
+.upperBtn{
+  margin-top: 40px;
+  gap: 20px;
+}

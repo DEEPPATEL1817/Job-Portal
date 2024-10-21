@@ -9,52 +9,67 @@ import MyJobs from '../pages/myJobs';
 import JobListing from '../pages/jobListing';
 import PostJob from '../pages/postJob';
 import Job from '../pages/job';
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
       {
-        path: '/',
-        element: <LandingPage />
+        path: "/",
+        element: <LandingPage />,
       },
       {
-        path: '/Onboard',
-        element: <Onboard />
+        path: "/onboard",
+        element:<Onboard />
       },
       {
-        path: '/SaveJob',
-        element: <SaveJob />
+        path: "/jobs",
+        element:<JobListing />  
       },
       {
-        path: '/MyJobs',
-        element: <MyJobs/>
+        path: "/post-job",
+        element:<PostJob />
+        
       },
       {
-        path: '/JobListing',
-        element: <JobListing />
+        path: "/my-jobs",
+        element: <MyJobs />
+          
       },
       {
-        path: '/PostJob',
-        element: <PostJob />
+        path: "/saved-jobs",
+        element:<SaveJob />
+          
       },
       {
-        path: '/Job',
-        element: <Job />
+        path: "/job/:id",
+        element:<Job />
+         
       },
-
-    ]
+    ],
   },
-])
+]);
+
 function App() {
-
   return (
-
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <RouterProvider router={router} />
-   
-  </ThemeProvider>
-
-  )
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
