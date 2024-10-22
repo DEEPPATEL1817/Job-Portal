@@ -6,13 +6,11 @@ const AppLayout = () => {
   return (
     <div className="app-layout"> 
       <div className="grid-background"></div>
-      <main className="content">
+      <main className="">
         <Header />
         <Outlet />
       </main>
-      <footer className="footer"> 
-        made by deep
-      </footer>
+     
     </div>
   );
 };
