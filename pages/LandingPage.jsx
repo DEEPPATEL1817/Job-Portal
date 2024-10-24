@@ -4,20 +4,34 @@ import React from 'react'
 import Job from '../pages/Job'
 import PostJob from '../pages/PostJob'
 import { Link } from 'react-router-dom'
+import '../src/index.css'
 
 const LandingPage = () => {
   return (
     <main>
-      <section>
-        <h1>Find Your Dream Job {" "} <span> and get{" "} <img src="/logo.png" className='h-14' alt="" /></span></h1>
-      </section>
-    </main>
+    <section>
+      <div className="left">
+        <h1 className="justify-center flex">
+          <span className="">Connecting Talent</span> with Opportunity
+        </h1>
+        <h4 className='text-green-700'>Discover 50 lakh+ career opportunities</h4>
+      </div>
+  
+      <div className="right">
+      
+      </div>
+    </section>
+    <h1 className="text-green-500">Test Text</h1>
+  </main>
+  
   )
 
 
 
 
+}
 
+export default LandingPage
 
 
 
@@ -76,6 +90,3 @@ const LandingPage = () => {
 
   //   {/* {Accordion} */}
   // </main>
-}
-
-export default LandingPage
