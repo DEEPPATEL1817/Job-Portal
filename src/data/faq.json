@@ -1,0 +1,34 @@
+[
+    {
+        "question":" How do I create an account?",
+        "answer":"To create an account, click on the `Sign Up` button on the homepage, fill out the registration form with your details, and verify your email to activate your account."
+    },
+    {
+        "question":"What if I forget my password?",
+        "answer":"Click on the Forgot Password? link on the login page. Enter your email address, and we will send you instructions to reset your password."
+    },
+    {
+        "question":"how do i post a job",
+        "answer":"As a employer,you can post a job by navigating to the 'Post Job' section"
+    },
+    {
+        "question":"",
+        "answer":""
+    },
+    {
+        "question":"",
+        "answer":""
+    },
+    {
+        "question":"",
+        "answer":""
+    },
+    {
+        "question":"",
+        "answer":""
+    },
+    {
+        "question":"",
+        "answer":""
+    }
+]
