@@ -13,10 +13,12 @@ export async function getJobs(token,{ location, company_id, searchQuery }){
         // here eq is to compare a value inside a table of supabse
     }
     if(company_id){
-        query=query.eq("comapny_id",company_id)
+        query=query.eq("companies_id",company_id)
     }
+
+    // this filter query is not working 
     if(searchQuery){
-        query=query.ilike("comapny_id",`%${searchQuery}%`)
+        query=query.ilike("Title",`%${searchQuery}%`)
     }
 
     const {data, error}=await query;
@@ -31,4 +33,56 @@ export async function getJobs(token,{ location, company_id, searchQuery }){
 
 
 
+// 
+export async function savedJob(token,{ alreadySaved }, saveData){
+    const supabase = await supabaseClient(token )
+ 
+    if(alreadySaved){
+        //here i change the name of error to DeleteError it means through this i can delete saved jobs
 
+        const {data, error:deleteError} = await supabase
+        .from("saved_jobs")
+        .delete()
+        .eq("job_id",saveData.job_id);
+
+        if(deleteError){
+            console.error("Error fatching Jobs:",error)
+            return null;
+        }
+        return data;
+    }
+    else{
+        const {data, error:insertError} = await supabase
+        .from("saved_jobs")
+        .insert([saveData])
+        .select()
+        
+        if(insertError){
+            console.error("error deleting saved jobs",insertError);
+            return null;
+        }
+        return data;
+    }
+ 
+ }
+ 
+
+
+
+ export async function getSingleJob(token,{job_id}){
+    const supabase = await supabaseClient(token )
+ 
+    
+
+        const {data, error} = await supabase
+        .from("Jobs")
+        .select("Title,Location,Discription,companies(name,logo)")
+        .eq("id",job_id)
+        .single();
+
+        if(error){
+            console.error("Error fatching Company:",error)
+            return null;
+        }
+        return data;
+}
