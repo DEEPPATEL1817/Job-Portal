@@ -27,7 +27,7 @@ const JobListing = () => {
   // for companies
   const {
     fn: fnCompanies,
-    data: Companies,
+    data: companies,
     loading: loadingCompanies,
   } = useFetch(getCompanies);
 
@@ -50,7 +50,7 @@ const JobListing = () => {
     return <BarLoader className="mb-2" width={"100%"} color="lightblue" />
   }
 
-  const clearFilters=()=>{
+  const clearFilters = () => {
     setSearchQuery("");
     setCompany_id("");
     setLocation("");
@@ -115,12 +115,11 @@ const JobListing = () => {
             <SelectGroup>
 
               {/* company is not getting load  error issue*/}
-
-              {/* {Companies.map(({name,id})=>{
-                return(
+              {/* {companies.map(({ name, id }) => {
+                return (
                   <SelectItem key={name} value={id}>{name} </SelectItem>
                 );
-              })} */}     
+              })} */}
 
             </SelectGroup>
           </SelectContent>

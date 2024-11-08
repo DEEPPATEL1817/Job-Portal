@@ -2,7 +2,10 @@ import React from 'react'
 
 const PostJobs = () => {
   return (
-    <div>PostJobs</div>
+    <div>
+      <h3>kem cho</h3>
+    </div>
+  
   )
 }
 

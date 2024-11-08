@@ -76,13 +76,33 @@ export async function savedJob(token,{ alreadySaved }, saveData){
 
         const {data, error} = await supabase
         .from("Jobs")
-        .select("Title,Location,Discription,companies(name,logo)")
+        .select("*,Title,Location,Discription,companies(name,logo),application:application(*)")
         .eq("id",job_id)
         .single();
+        console.log("jk",data)
 
         if(error){
-            console.error("Error fatching Company:",error)
+            console.error("Error fatching job:",error)
             return null;
         }
         return data;
 }
+
+
+
+export async function updateHiringStatus(token, { job_id }, isOpen) {
+    const supabase = await supabaseClient(token);
+    const { data, error } = await supabase
+      .from('Jobs')
+      .select('*')
+      .eq('isOpen', true);
+      console.log("maha",data)
+  
+    if (error) {
+      console.error("Error Updating Hiring Status:", error);
+      return null;
+    }
+  
+    return data;
+  }
+  
