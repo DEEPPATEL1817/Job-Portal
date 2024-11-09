@@ -1,4 +1,4 @@
-import { getSingleJob, updateHiringStatus } from '@/api/apiJobs';
+import { getSingleJob } from '@/api/apiJobs';
 import useFetch from '@/hooks/useFetch';
 import { useUser } from '@clerk/clerk-react'
 import React, { useEffect } from 'react'
@@ -8,6 +8,7 @@ import Jobs from './Jobs';
 import { Briefcase, DoorClosed, DoorOpen, MapPin, MapPinIcon } from 'lucide-react';
 import MDEditor from '@uiw/react-md-editor';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import ApplyJobDrawer from '@/components/applyJobDrawer';
 
 const JobPage = () => {
 
@@ -21,19 +22,20 @@ const JobPage = () => {
   } = useFetch(getSingleJob, { job_id: id });
 
 
-  const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
-    updateHiringStatus,
-    {
-      job_id: id,
-    }
-  );
+  // const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
+  //   updateHiringStatus,
+  //   {
+  //     job_id: id,
+  //   }
+  // );
 
 
  
-  const handleStatusChange = (value) => {
-    const isOpen = value === "open";
-    fnHiringStatus(isOpen).then(() => fnJob());
-  };
+  // const handleStatusChange = (value) => {
+  //   const isOpen = value === "open";
+  //   fnHiringStatus(isOpen).then(() => fnJob());
+  // };
+
 
   useEffect(() => {
     if (isLoaded) {
@@ -78,7 +80,7 @@ const JobPage = () => {
       </div>
 
       {/* hiring Status */}
-      {loadingHiringStatus && <BarLoader className="mt-4-2" width={"100%"} color="lightblue" />}
+      {/* {loadingHiringStatus && <BarLoader className="mt-4-2" width={"100%"} color="lightblue" />}
       {job?.recruiter_id === user?.id && (
         <Select onValueChange={handleStatusChange}>
           <SelectTrigger
@@ -95,7 +97,7 @@ const JobPage = () => {
             <SelectItem value="closed">Closed</SelectItem>
           </SelectContent>
         </Select>
-      )}
+      )} */}
 
       <h2 className='text-2xl sm:text-3xl font-bold'>About the job</h2>
       <p className='sm:text-lg'>{job?.Discription}</p>
@@ -108,7 +110,23 @@ const JobPage = () => {
       />
 
       {/* render application */}
-
+      
+      {job?.recruiter_id !== user?.id && (
+        <ApplyJobDrawer
+          job={job}
+          user={user}
+          fetchJob={fnJob}
+          applied={job?.applications?.find((ap) => ap.candidate_id === user.id)}
+        />
+      )}
+      {job?.application?.length > 0 && job?.recruiter_id===user?.id && (  
+        <div>
+          <h2 className='text-2xl sm:text-3xl font-bold'>Application</h2>
+          {job?.application.map(()=>{
+            return <APPlicationCard />
+          })}
+        </div>
+            )}
     </div>
   )
 }

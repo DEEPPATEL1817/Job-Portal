@@ -89,17 +89,36 @@ export async function savedJob(token,{ alreadySaved }, saveData){
 }
 
 
+// not working 
 
-export async function updateHiringStatus(token, { job_id }, isOpen) {
+// export async function updateHiringStatus(token, { job_id }, isOpen) {
+//     const supabase = await supabaseClient(token);
+//     const { data, error } = await supabase
+//       .from("Jobs")
+//       .update({ isOpen })
+//       .eq("id", job_id)
+//       .select();
+//   console.log("supa",data)
+//     if (error) {
+//       console.error("Error Updating Hiring Status:", error);
+//       return null;
+//     }
+  
+//     return data;
+//   }
+
+
+export async function getMyJobs(token, { recruiter_id }) {
     const supabase = await supabaseClient(token);
+  
     const { data, error } = await supabase
-      .from('Jobs')
-      .select('*')
-      .eq('isOpen', true);
-      console.log("maha",data)
+      .from("Jobs")
+      .select("*, company: companies(name,logo)")
+      .eq("recruiter_id", recruiter_id);
+      console.log("dee",data)
   
     if (error) {
-      console.error("Error Updating Hiring Status:", error);
+      console.error("Error fetching Jobs:", error);
       return null;
     }
   
