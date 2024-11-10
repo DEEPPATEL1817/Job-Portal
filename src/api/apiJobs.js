@@ -79,49 +79,36 @@ export async function savedJob(token,{ alreadySaved }, saveData){
         .select("*,Title,Location,Discription,companies(name,logo),application:application(*)")
         .eq("id",job_id)
         .single();
-        console.log("jk",data)
+        console.log("application details",data)
 
         if(error){
             console.error("Error fatching job:",error)
             return null;
         }
         return data;
-}
+    }
+    
+    
+    
+//  working 
 
-
-// not working 
-
-// export async function updateHiringStatus(token, { job_id }, isOpen) {
-//     const supabase = await supabaseClient(token);
-//     const { data, error } = await supabase
-//       .from("Jobs")
-//       .update({ isOpen })
-//       .eq("id", job_id)
-//       .select();
-//   console.log("supa",data)
-//     if (error) {
-//       console.error("Error Updating Hiring Status:", error);
-//       return null;
-//     }
-  
-//     return data;
-//   }
-
-
-export async function getMyJobs(token, { recruiter_id }) {
+export async function updateHiringStatus(token, { job_id }, isOpen) {
     const supabase = await supabaseClient(token);
-  
     const { data, error } = await supabase
       .from("Jobs")
-      .select("*, company: companies(name,logo)")
-      .eq("recruiter_id", recruiter_id);
-      console.log("dee",data)
+      .update({ isOpen })
+      .eq("id", job_id)
+      .select();
+      console.log("Job Open or closed Status",data)
   
     if (error) {
-      console.error("Error fetching Jobs:", error);
+      console.error("Error Updating Hiring Status:", error);
       return null;
     }
   
     return data;
   }
+  
+
+
   

@@ -1,14 +1,15 @@
-import { getSingleJob } from '@/api/apiJobs';
+import { getSingleJob, updateHiringStatus } from '@/api/apiJobs';
 import useFetch from '@/hooks/useFetch';
 import { useUser } from '@clerk/clerk-react'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { BarLoader } from 'react-spinners';
-import Jobs from './Jobs';
-import { Briefcase, DoorClosed, DoorOpen, MapPin, MapPinIcon } from 'lucide-react';
+// import Jobs from './Jobs';
+import { Briefcase, DoorClosed, DoorOpen, MapPinIcon } from 'lucide-react';
 import MDEditor from '@uiw/react-md-editor';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ApplyJobDrawer from '@/components/applyJobDrawer';
+import ApplicationCard from '@/components/ApplicationCard';
 
 const JobPage = () => {
 
@@ -22,19 +23,21 @@ const JobPage = () => {
   } = useFetch(getSingleJob, { job_id: id });
 
 
-  // const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
-  //   updateHiringStatus,
-  //   {
-  //     job_id: id,
-  //   }
-  // );
+  
+  const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
+    updateHiringStatus,
+    {
+      job_id: id,
+    }
+   
+  );
 
 
  
-  // const handleStatusChange = (value) => {
-  //   const isOpen = value === "open";
-  //   fnHiringStatus(isOpen).then(() => fnJob());
-  // };
+  const handleStatusChange = (value) => {
+    const isOpen = value === "open";
+    fnHiringStatus(isOpen).then(() => fnJob());
+  };
 
 
   useEffect(() => {
@@ -80,7 +83,7 @@ const JobPage = () => {
       </div>
 
       {/* hiring Status */}
-      {/* {loadingHiringStatus && <BarLoader className="mt-4-2" width={"100%"} color="lightblue" />}
+      {loadingHiringStatus && <BarLoader className="mt-4-2" width={"100%"} color="lightblue" />}
       {job?.recruiter_id === user?.id && (
         <Select onValueChange={handleStatusChange}>
           <SelectTrigger
@@ -97,7 +100,7 @@ const JobPage = () => {
             <SelectItem value="closed">Closed</SelectItem>
           </SelectContent>
         </Select>
-      )} */}
+      )}
 
       <h2 className='text-2xl sm:text-3xl font-bold'>About the job</h2>
       <p className='sm:text-lg'>{job?.Discription}</p>
@@ -116,17 +119,31 @@ const JobPage = () => {
           job={job}
           user={user}
           fetchJob={fnJob}
-          applied={job?.applications?.find((ap) => ap.candidate_id === user.id)}
+          applied={job?.application?.find((ap) => ap.candidate_id === user.id)}
         />
       )}
-      {job?.application?.length > 0 && job?.recruiter_id===user?.id && (  
-        <div>
-          <h2 className='text-2xl sm:text-3xl font-bold'>Application</h2>
-          {job?.application.map(()=>{
-            return <APPlicationCard />
+      {loadingHiringStatus && <BarLoader width={"100%"} color="#36d7b7" />}
+      {job?.application?.length > 0 && job?.recruiter_id === user?.id && (
+        <div className="flex flex-col gap-2">
+          <h2 className="font-bold mb-4 text-xl ml-1">Applications</h2>
+          {job?.application.map((application) => {
+            return (
+              <ApplicationCard key={application.id} application={application} />
+            );
           })}
         </div>
             )}
+
+            {/* {job?.application?.length > 0 && job?.recruiter_id === user?.id && (
+              <div>
+                <h2 className='text-2xl sm:text-3xl font-bold'>Application</h2>
+                {
+                  job?.application.map(()=>{
+                    return <ApplicationCard key={application.id} application={application} />
+                  })
+                }
+              </div>
+            ) } */}
     </div>
   )
 }
