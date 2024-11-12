@@ -133,17 +133,6 @@ const JobPage = () => {
           })}
         </div>
             )}
-
-            {/* {job?.application?.length > 0 && job?.recruiter_id === user?.id && (
-              <div>
-                <h2 className='text-2xl sm:text-3xl font-bold'>Application</h2>
-                {
-                  job?.application.map(()=>{
-                    return <ApplicationCard key={application.id} application={application} />
-                  })
-                }
-              </div>
-            ) } */}
     </div>
   )
 }

@@ -4,8 +4,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { BookmarkIcon,MapPinIcon,Trash2Icon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
-import { savedJob } from '@/api/apiJobs';
+import { DeleteJob, savedJob } from '@/api/apiJobs';
 import useFetch from '@/hooks/useFetch';
+import { BarLoader } from 'react-spinners';
 
 // this job card can be use in multiple places like saved_job page by user and also this card is used for recurter who can delete the card after its use
 
@@ -38,12 +39,25 @@ const JobCard = ({
         if(SavedJob !== undefined ) setSaved(SavedJob?.length>0);
     },[SavedJob])
 
-  return <Card className="flex flex-col">
+    const {
+        loading:loadingDeleteJob,
+        fn:fnDeleteJob,
+    } =useFetch(DeleteJob,{job_id:job.id})
+
+    const handleDeleteJob=async()=>{
+        await fnDeleteJob()
+        onJobSaved()
+    }
+
+  return (<Card className="flex flex-col">
+    {loadingDeleteJob && (<BarLoader className='mt-4' width={"100%"} color='lightblue' />)}
     <CardHeader>
         <CardTitle className="flex justify-between font-bold">{job.Title}
 
-        {!isMyJob && (
-            <Trash2Icon fill="red" size ={18} className='text-red-400 cursor-pointer' /> 
+        {isMyJob && (
+            <Trash2Icon fill="red" size ={18} className='text-red-400 cursor-pointer' 
+            onClick={handleDeleteJob}
+            /> 
         )}
         </CardTitle>
     </CardHeader>
@@ -78,6 +92,7 @@ const JobCard = ({
         )}
     </CardFooter>
   </Card>
+  )
 }
 
 export default JobCard

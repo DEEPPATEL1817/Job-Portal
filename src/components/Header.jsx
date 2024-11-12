@@ -42,7 +42,7 @@ const Header = () => {
                     </SignedOut>
                     <SignedIn>
                         {user?.unsafeMetadata?.role==="recruiter" && (
-                        <Link to="/PostJob">
+                        <Link to="/PostJobs">
                         <Button variant="secondary" className="rounded-full">
                             <PenBox size={20} className='mr-2' /> Post a Job
                         </Button>

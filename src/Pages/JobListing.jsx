@@ -3,10 +3,10 @@ import { getJobs } from '@/api/apiJobs'
 import JobCard from '@/components/JobCard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem,  SelectTrigger, SelectValue } from '@/components/ui/select'
 import useFetch from '@/hooks/useFetch'
 import { useUser } from '@clerk/clerk-react'
-import { City, State } from 'country-state-city'
+import {  State } from 'country-state-city'
 import React, { useEffect, useState } from 'react'
 import { BarLoader } from 'react-spinners'
 
@@ -28,7 +28,6 @@ const JobListing = () => {
   const {
     fn: fnCompanies,
     data: companies,
-    loading: loadingCompanies,
   } = useFetch(getCompanies);
 
   console.log(Jobs);
@@ -101,26 +100,29 @@ const JobListing = () => {
                   <SelectItem key={name} value={name}>{name}</SelectItem>
                 );
               })}
+              
 
             </SelectGroup>
           </SelectContent>
         </Select>
 
         {/* for filtering companies */}
-        <Select value={company_id} onValueChange={(value) => setCompany_id(value)}>
-          <SelectTrigger >
+        <Select
+          value={company_id}
+          onValueChange={(value) => setCompany_id(value)}
+        >
+          <SelectTrigger>
             <SelectValue placeholder="Filter by Company" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-
-              {/* company is not getting load  error issue*/}
-              {/* {companies.map(({ name, id }) => {
+              {companies?.map(({ name, id }) => {
                 return (
-                  <SelectItem key={name} value={id}>{name} </SelectItem>
+                  <SelectItem key={name} value={id}>
+                    {name}
+                  </SelectItem>
                 );
-              })} */}
-
+              })}
             </SelectGroup>
           </SelectContent>
         </Select>

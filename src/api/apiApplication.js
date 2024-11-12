@@ -12,7 +12,7 @@ export async function applyJob(token,_,jobData){
       .upload(fileName, jobData.resume);
 
  
-      if (storageError) throw new Error("Error uploading Resume");
+      if (storageError) throw new Error("Error uploading Resume",storageError);
     
     const resume=`${supabaseUrl}/storage/v1/object/public/resumes/${fileName}`
         const {data, error} = await supabase
@@ -39,6 +39,24 @@ export async function updateApplicationStatus(token, { job_id }, status) {
 
   if (error || data.length === 0) {
     console.error("Error Updating Application Status:", error);
+    return null;
+  }
+
+  return data;
+}
+
+// this fn is to show the My-Application
+export async function getApplication(token, { user_id }) {
+  const supabase = await supabaseClient(token);
+  const { data, error } = await supabase
+    .from("application")
+    .select("*,job:Jobs(Title,companies(name))")
+    .eq("candidate_id", user_id )
+
+    console.log("recruiter Opinion",data)
+
+  if (error ) {
+    console.error("Error Fetching Application :", error);
     return null;
   }
 
