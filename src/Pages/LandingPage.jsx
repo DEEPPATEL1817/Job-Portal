@@ -20,7 +20,7 @@ const LandingPage = () => {
 
       <div className='flex flex-col lg:flex-row gap-6 justify-center py-10'>
         <Link to='/JobListing' >
-          <Button variant="blue" size="xl" className='w-full sm:w-auto'>Find JOb</Button>
+          <Button variant="blue" size="xl" className='w-full sm:w-auto'>Find Job</Button>
         </Link>
         <Link to='/PostJobs' >
           <Button variant="outline" size="xl" className='w-full sm:w-auto'>Post a Job</Button>

@@ -3,10 +3,11 @@ import { getJobs } from '@/api/apiJobs'
 import JobCard from '@/components/JobCard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
 import { Select, SelectContent, SelectGroup, SelectItem,  SelectTrigger, SelectValue } from '@/components/ui/select'
 import useFetch from '@/hooks/useFetch'
 import { useUser } from '@clerk/clerk-react'
-import {  State } from 'country-state-city'
+import {   State } from 'country-state-city'
 import React, { useEffect, useState } from 'react'
 import { BarLoader } from 'react-spinners'
 
@@ -16,6 +17,7 @@ const JobListing = () => {
   const [location, setLocation] = useState("")
   const [company_id, setCompany_id] = useState("")
   const { isLoaded } = useUser()
+  // const [city,setCity]=useState("")
 
   // for jobs
   const {
@@ -53,6 +55,7 @@ const JobListing = () => {
     setSearchQuery("");
     setCompany_id("");
     setLocation("");
+    // setCity("")
   }
 
 
@@ -106,6 +109,26 @@ const JobListing = () => {
           </SelectContent>
         </Select>
 
+
+        {/* filter by City  not working  */}
+        {/* <Select value={city} onValueChange={(value) => setCity(value)}>
+          <SelectTrigger >
+            <SelectValue placeholder="Filter by State" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+            {location && (City.getCitiesOfState("IN", location).map(({ name }) => {
+                return (
+                  <SelectItem key={name} value={name}>{name}</SelectItem>
+                );
+              
+              }))}
+              
+
+            </SelectGroup>
+          </SelectContent>
+        </Select> */}
+
         {/* for filtering companies */}
         <Select
           value={company_id}
@@ -144,6 +167,24 @@ const JobListing = () => {
           )}
         </div>
       )}
+
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+
     </div>
   )
 }

@@ -12,6 +12,7 @@ import SavedJobs from './Pages/SavedJobs'
 import JobPage from './Pages/JobPage'
 import { ThemeProvider } from './components/theme-provider'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import About from './Pages/About'
 
 const router =createBrowserRouter([
   {
@@ -81,6 +82,14 @@ const router =createBrowserRouter([
         </ProtectedRoute>
         ),
       },
+      {
+        path:'/About',
+        element:(
+        <ProtectedRoute>
+        <About />
+        </ProtectedRoute>
+        ),
+      }
     ]
   }
 ])

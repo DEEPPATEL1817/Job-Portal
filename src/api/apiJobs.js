@@ -3,20 +3,23 @@
 import supabaseClient from "@/utils/supabase";
 
 
-export async function getJobs(token,{ location, company_id, searchQuery }){
+export async function getJobs(token,{ location, company_id, searchQuery, }){
    const supabase = await supabaseClient(token )
 
-    let query = supabase.from("Jobs").select("*,companies(name,logo),saved:saved_jobs(id)");
+    let query = supabase.from("Jobs").select("*,companies(name,logo),saved:saved_jobs(id),Location");
 
     // this filter query is not working 
     if(location){
-        query=query.eq("Location", location); 
+        query=query.ilike("Location", `%${location.trim()}%`); 
         // here eq is to compare a value inside a table of supabse
     }
     
     if(company_id){
         query=query.eq("companies_id",company_id)
     }
+    // if(city){
+    //     query=query.eq("City",city)
+    // }
 
     
     if(searchQuery){

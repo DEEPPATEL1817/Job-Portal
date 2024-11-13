@@ -8,7 +8,7 @@ import { BookmarkIcon, BriefcaseBusiness, BriefcaseBusinessIcon, PenBox } from '
 const Header = () => {
 
     const [showSignIn, setShowSignIn] = useState(false);
-    
+
 
     //this will redirect to signin page
     const [search, setSearch] = useSearchParams();
@@ -30,24 +30,32 @@ const Header = () => {
     };
 
     return (
-        <>
+        <div className="sticky top-0 bg-black z-50 shadow-md">
             <nav className='py-4 flex justify-between item-center'>
                 <Link>
                     <img src="/logo.png" alt="Logo" className='h-20' />
                 </Link>
+
+                <div className='items-center hidden sm:block'>
+                    <ul className='flex gap-6 text-lg font-medium '>
+                        <li><Link to="/" className="hover:text-blue-600 transition-colors duration-200">Home</Link></li>
+                        <li><Link to="/About" className="hover:text-blue-600 transition-colors duration-200">About</Link></li>
+                        <li><Link to="/JobListing" className="hover:text-blue-600 transition-colors duration-200">Looking for a Job</Link></li>
+                    </ul>
+                </div>
 
                 <div className='flex gap-8 items-center'>
                     <SignedOut>
                         <Button variant="outline" onClick={() => setShowSignIn(true)}>Login</Button>
                     </SignedOut>
                     <SignedIn>
-                        {user?.unsafeMetadata?.role==="recruiter" && (
-                        <Link to="/PostJobs">
-                        <Button variant="secondary" className="rounded-full">
-                            <PenBox size={20} className='mr-2' /> Post a Job
-                        </Button>
-                        </Link>
-                    )}
+                        {user?.unsafeMetadata?.role === "recruiter" && (
+                            <Link to="/PostJobs">
+                                <Button variant="secondary" className="rounded-full">
+                                    <PenBox size={20} className='mr-2' /> Post a Job
+                                </Button>
+                            </Link>
+                        )}
                         <UserButton appearance={{
                             elements: {
                                 avatarBox: "w-10 h-10",
@@ -80,7 +88,7 @@ const Header = () => {
                     />
                 </div>
             )}
-        </>
+        </div>
     )
 }
 
