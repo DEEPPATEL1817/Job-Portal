@@ -45,6 +45,7 @@ const JobCard = ({
     } =useFetch(DeleteJob,{job_id:job.id})
 
     const handleDeleteJob=async()=>{
+        
         await fnDeleteJob()
         onJobSaved()
     }
@@ -54,7 +55,7 @@ const JobCard = ({
     <CardHeader>
         <CardTitle className="flex justify-between font-bold">{job.Title}
 
-        {isMyJob && (
+        {!isMyJob && (
             <Trash2Icon fill="red" size ={18} className='text-red-400 cursor-pointer' 
             onClick={handleDeleteJob}
             /> 

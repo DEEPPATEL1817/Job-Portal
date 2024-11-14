@@ -22,18 +22,18 @@ const AppLayout = () => {
               <li><Link to="/About" className='text-lg sm:hidden hover:opacity-75 duration-200 transition-all'>About </Link></li>
               <li>
                 <a href="https://www.facebook.com" target="_blank">
-                <img src="/Facebook.jpg" alt="" className=' h-10 w-10 object-fit mt-4 hover:opacity-75 transition-all duration-200'/>
+                <img src="/faceboodOG.png" alt="" className=' h-10 w-10 object-fit mt-4 hover:opacity-75 transition-all duration-200'/>
                 </a>
                 
                 </li>
               <li>
                 <a href="https://www.x.com" target='_blank'>
-                <img src="/Twitter.jpg" alt="" className=' h-10 w-10 object-contain mt-4 hover:opacity-75 transition-all duration-200'  />
+                <img src="/X1.jpeg" alt="" className=' h-10 w-10 object-contain mt-4 hover:opacity-75 transition-all duration-200'  />
               </a>
               </li>
               <li>
                 <a href="https://www.instagram.com" target='_blank'>
-                <img src="/Instagram.jpg" alt="" className=' h-10 w-10  mt-4 object-contain hover:opacity-75 transition-all duration-200' />
+                <img src="/InstagramOg.png" alt="" className=' h-10 w-10  mt-4 object-contain hover:opacity-75 transition-all duration-200' />
               </a>
               </li>
             </ul>

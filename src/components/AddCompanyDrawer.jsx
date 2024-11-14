@@ -85,7 +85,9 @@ const AddCompanyDrawer = ({fetchCompanies}) => {
     {loadingAddCompany && <BarLoader width={"100%"} color="lightblue"/>}
     <DrawerFooter>
       <DrawerClose asChild>
-        <Button variant="secondary" type="button">Cancel</Button>
+      <Button type="button" size="sm" variant ="outline">
+        Cancel
+    </Button>
       </DrawerClose>
     </DrawerFooter>
   </DrawerContent>

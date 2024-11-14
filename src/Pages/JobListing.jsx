@@ -18,6 +18,7 @@ const JobListing = () => {
   const [company_id, setCompany_id] = useState("")
   const { isLoaded } = useUser()
   // const [city,setCity]=useState("")
+ 
 
   // for jobs
   const {
@@ -34,11 +35,21 @@ const JobListing = () => {
 
   console.log(Jobs);
 
+
+   //this is for pagination
+  
+
+
   // this useEffect is for jobs
   useEffect(() => {
     if (isLoaded)
       fnJobs()
   }, [isLoaded, location, company_id, searchQuery])
+
+
+
+ 
+
 
   // this useEffect is for Companies
   useEffect(() => {

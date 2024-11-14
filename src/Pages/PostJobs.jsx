@@ -24,6 +24,7 @@ const schema = z.object({
   Location: z.string().min(1, { message: "Location is required" }),
   Requirements: z.string().min(1, { message: "Requirements is required" }),
   companies_id: z.string().min(1, { message: "companies_id is required" }),
+  Salary: z.string().min(1, { message: "Salary is required" }),
 
 
 })
@@ -82,7 +83,7 @@ const PostJobs = () => {
 
 
   useEffect(() => {
-    if (dataCreateJOb?.length > 0) navigate('/Jobs')
+    if (dataCreateJOb?.length > 0) navigate('/JobListing')
   }, [loadingCreatJob])
 
 
@@ -108,6 +109,10 @@ const PostJobs = () => {
         {errors.Discription && (
           <p className="text-red-500">{errors.Discription.message}</p>
         )}
+
+<Input placeholder="Salary" {...register("Salary")} />
+        {errors.Salary && <p className="text-red-500">{errors.Salary.message}</p>}
+
 
         <div className='flex gap-4 items-start'>
           <Controller
@@ -163,7 +168,7 @@ const PostJobs = () => {
               </Select>
             )}
           />
-          
+
           {/* add company drawer */}
 
         <AddCompanyDrawer fetchCompanies={fnCompanies} />
