@@ -8,8 +8,8 @@ import { BarLoader } from 'react-spinners';
 import { Briefcase, DoorClosed, DoorOpen, MapPinIcon } from 'lucide-react';
 import MDEditor from '@uiw/react-md-editor';
 import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import  { ApplyJobDrawer } from '@/components/ApplyJobDrawer';
 import ApplicationCard from '@/components/ApplicationCard';
+import ApplyJobDrawer from '@/components/ApplyJobDrawer';
 
 const JobPage = () => {
 
