@@ -11,7 +11,7 @@ export async function getJobs(token,{ location, company_id, searchQuery}){
     // this filter query is not working 
     if(location){
         query=query.ilike("Location", `%${location.trim()}%`); 
-        // here eq is to compare a value inside a table of supabse
+        
     }
 
 
