@@ -15,7 +15,7 @@ const AppLayout = () => {
         
           <div className='flex text-center justify-between'>
           <Link>
-          <img src="/logo-dark.png" className='h-20' alt="" />
+          <img src="/logo-dark.png" className='h-20' alt="photo" />
           </Link>
           <div className='flex justify-center items-center' >
             <ul className='flex gap-2 items-center' >

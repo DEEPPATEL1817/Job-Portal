@@ -9,7 +9,9 @@ import { Briefcase, DoorClosed, DoorOpen, MapPinIcon } from 'lucide-react';
 import MDEditor from '@uiw/react-md-editor';
 import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ApplicationCard from '@/components/ApplicationCard';
-import ApplyJobDrawer from '@/components/ApplyJobDrawer';
+import ApplyJobDraw from '@/components/ApplyJobDraw';
+
+
 
 const JobPage = () => {
 
@@ -117,7 +119,7 @@ const JobPage = () => {
       {/* render application */}
       
       {job?.recruiter_id !== user?.id && (
-        <ApplyJobDrawer
+        <ApplyJobDraw
           job={job}
           user={user}
           fetchJob={fnJob}
