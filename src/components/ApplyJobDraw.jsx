@@ -34,7 +34,7 @@ const schema = z.object({
   });
 
 
-// hgffes
+// AApplyJobDraw
     export function ApplyJobDraw({ user, job, fetchJob, applied = false }) {
         const {
           register,
