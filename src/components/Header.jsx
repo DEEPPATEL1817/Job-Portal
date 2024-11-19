@@ -83,8 +83,8 @@ const Header = () => {
                 //this handleclick will allow to remove authentication box of clerk
                 >
                     <SignIn
-                        signUpForceRedirectUrl="/onboarding"
-                        fallbackRedirectUrl="/onboarding"
+                        signUpForceRedirectUrl="/Onboarding"
+                        fallbackRedirectUrl="/Onboarding"
                     />
                 </div>
             )}
