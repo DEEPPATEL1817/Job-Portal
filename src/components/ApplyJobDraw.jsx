@@ -34,7 +34,9 @@ const schema = z.object({
   });
 
 
-// AApplyJobDraw
+// AApplyJobDraw function
+//extra
+
     export function ApplyJobDraw({ user, job, fetchJob, applied = false }) {
         const {
           register,
@@ -155,6 +157,7 @@ return (
           <Button type="submit" variant="blue" size="lg">
             Apply
           </Button>
+          <div></div>
         </form>
 
         <DrawerFooter>
