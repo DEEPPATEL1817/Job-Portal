@@ -18,7 +18,7 @@ const About = () => {
             <h1 className='font-light pt-8 text-3xl underline sm:text-5xl text-center '>Our Vision</h1>
             <p className='font-light text-2xl sm:text-3xl mt-10 text-center '>Job Nexus envisions a world where the hiring process is swift, transparent, and rewarding for everyone involved. We are driven by the belief that every candidate deserves a chance to shine and every company deserves access to top talent. Our mission is to evolve as the premier job network, setting a new standard for excellence in recruitment and career development.</p>
 
-            <div className='flex justify-evenly mt-10'>
+            <div className='flex sm:justify-evenly mt-10 flex-col'>
                 <div className='mt-4'>
                     <h1 className='text-3xl text-gray-400 underline '>Corporate Office</h1>
                     <p className='mt-4'>Job Nexus Limited <br />
