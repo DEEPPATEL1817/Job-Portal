@@ -30,6 +30,8 @@ const About = () => {
                         E-mail: JobNexus@naukri.com</p>
                 </div>
 
+                <div></div>
+                
                 <div className='mt-4'>
                     <h1 className='text-3xl text-gray-400 underline '>Registered Office</h1>
                     <p className='mt-4'>Job Nexus Limited <br />
